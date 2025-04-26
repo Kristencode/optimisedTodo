@@ -90,10 +90,15 @@ card.appendChild(btn);
 let container = document.createElement("div");
 container.id = "listContainer";
 container.style.height = "auto";
-container.style.width = "500px";
+container.style.maxWidth = "100%";
+container.style.width = "900px";
 container.style.marginTop = "5rem";
 container.style.borderRight = "0.3px solid green";
 container.style.borderLeft = "0.3px solid green";
+
+
+card.style.height = "auto";
+card.style.minHeight = "300px";
 
 card.appendChild(container);
 
@@ -109,8 +114,7 @@ document.querySelector("#btn").addEventListener("click", function () {
   if (inputValue === "") {
     return;
   }
-input.value ='';
-
+  input.value = "";
 
   // ,,create an id for each task
   let id = container.children.length + 1;

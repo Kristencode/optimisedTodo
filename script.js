@@ -109,6 +109,8 @@ document.querySelector("#btn").addEventListener("click", function () {
   if (inputValue === "") {
     return;
   }
+input.value ='';
+
 
   // ,,create an id for each task
   let id = container.children.length + 1;

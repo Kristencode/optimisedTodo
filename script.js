@@ -1,12 +1,13 @@
 // body and card
 
 let body = document.querySelector("body");
-
-body.style.display = "flex";
-body.style.flexDirection = "column";
-body.style.justifyContent = "center";
-body.style.alignItems = "center";
-body.style.margin = "0";
+document.documentElement.style.height = "100%";
+document.body.style.height = "100%";
+document.body.style.margin = "0";
+document.body.style.display = "flex";
+document.body.style.flexDirection = " row-reverse";
+document.body.style.justifyContent = "center";
+document.body.style.alignItems = "center";
 
 // crete a div to hod all elements
 
@@ -14,19 +15,49 @@ body.style.margin = "0";
 let card = document.createElement("div");
 card.style.maxWidth = "90%";
 card.style.width = "600px";
-card.style.height = "900px";
+card.style.height = "auto";
 card.style.minHeight = "300px";
 card.style.boxShadow = "0px 0px 10px 0px";
 card.style.backgroundColor = "#003300";
 card.style.padding = "20px";
 card.style.boxSizing = "border-box";
-card.style.margin = "20px auto";
 card.style.display = "flex";
 card.style.flexDirection = "column";
 card.style.alignItems = "center";
 card.style.gap = "10px";
 card.style.overflow = "hidden";
 
+let Donetask = document.createElement("div");
+Donetask.style.maxWidth = "90%";
+Donetask.style.width = "600px";
+Donetask.style.height = "auto";
+Donetask.style.minHeight = "100px";
+Donetask.style.boxShadow = "0px 0px 10px 0px";
+Donetask.style.boxSizing = "border-box";
+Donetask.style.display = "none";
+Donetask.style.flexDirection = "column";
+// Donetask.style.alignItems = "center";
+Donetask.style.border = "1px solid green";
+Donetask.style.gap = "10px";
+Donetask.style.overflow = "hidden";
+Donetask.style.position = "fixed";
+Donetask.style.top = "10px";
+Donetask.style.right = "20px";
+Donetask.style.margin = "0";
+body.appendChild(Donetask);
+
+// create a h1 forr done task
+let TaskTitle = document.createElement("h2");
+TaskTitle.innerText = "Completed Task";
+TaskTitle.style.color = "green";
+TaskTitle.style.borderRadius = "2px";
+// TaskTitle.style.padding = "5px";
+TaskTitle.style.marginTop = "0";
+TaskTitle.style.boxShadow = "0px 0px 10px 0px white";
+
+Donetask.append(TaskTitle);
+
+// created and appended input UI
 let input = document.createElement("input");
 input.className = "input";
 input.type = "text";
@@ -58,7 +89,7 @@ card.appendChild(btn);
 
 let container = document.createElement("div");
 container.id = "listContainer";
-container.style.height = "900px";
+container.style.height = "auto";
 container.style.width = "500px";
 container.style.marginTop = "5rem";
 container.style.borderRight = "0.3px solid green";
@@ -73,61 +104,90 @@ card.appendChild(container);
 document.querySelector("#btn").addEventListener("click", function () {
   let container = document.querySelector("#listContainer");
   let inputValue = document.querySelector("input").value.trim();
+  let date = new Date().toLocaleString();
 
   if (inputValue === "") {
     return;
   }
+
   // ,,create an id for each task
   let id = container.children.length + 1;
-  let para = document.createElement("p");
-  para.style.color = "white";
+  let paraDiv = document.createElement("div");
+  paraDiv.style.color = "white";
+  paraDiv.style.display = "flex";
+  paraDiv.style.alignItems = "center";
+  container.appendChild(paraDiv);
+  paraDiv.style.borderBottom = "0.3px solid green";
+  paraDiv.textContent = `${id}.`;
+
+  let checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.style.accentColor = "green";
+
+  paraDiv.appendChild(checkbox);
+
+  //  create a div and append the div to the pa
+
+  let para = document.createElement("div");
   para.style.display = "flex";
+  para.style.alignItems = "center";
   para.style.justifyContent = "space-between";
-  para.id = `para-${id}`;
-  container.appendChild(para);
-  para.style.borderBottom = "0.3px solid green";
+  para.style.width = "478px";
+  paraDiv.appendChild(para);
+  paraDiv.style.height = "50px";
+
+  // para.appendChild(checkbox);
 
   // create two span, one for image and one for para
 
   let paratext = document.createElement("span");
-  paratext.textContent = `${id}. ${inputValue}`;
+  paratext.textContent = ` ${inputValue}`;
+  para.appendChild(paratext);
 
   // creating images span
 
   let image = document.createElement("span");
   image.innerHTML = `
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    height="24px"
-    viewBox="0 -960 960 960"
-    width="24px"
-    fill="#75FB4C"
-    style="cursor: pointer;"
-  >
-    <path d="m376-300 104-104 104 104 56-56-104-104 104-104-56-56-104 104-104-104-56 56 104 104-104 104 56 56Zm-96 180q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520Zm-400 0v520-520Z" />
-  </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="24px"
+        viewBox="0 -960 960 960"
+        width="24px"
+        fill="#75FB4C"
+        style="cursor: pointer;"
+      >
+        <path d="m376-300 104-104 104 104 56-56-104-104 104-104-56-56-104 104-104-104-56 56 104 104-104 104 56 56Zm-96 180q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520Zm-400 0v520-520Z" />
+      </svg>
 
-`;
+    `;
 
-
-let radio = document.createElement('span');
-radio.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#75FB4C">
-  <path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
-</svg>`;
-
+  // function to delete..the image carries the delete
   image.addEventListener("click", function () {
-    para.remove();
+    paraDiv.remove();
   });
 
-  para.appendChild(paratext);
   para.appendChild(image);
- 
 
-  // remove list item
-
-  para.addEventListener("click", function () {
-    para.style.textDecoration = "line-through";
+  // here  used the CHECKED property and the CHANGE event listener
+  checkbox.addEventListener("click", function () {
+    if (checkbox.checked) {
+      paratext.style.textDecoration = "line-through";
+    } else {
+      paratext.style.textDecoration = "none";
+    }
   });
 });
 
 // create delete image and append to para.
+
+card.animate(
+  [
+    { opacity: 0, transform: "translateY(20px)" },
+    { opacity: 1, transform: "translateY(0)" },
+  ],
+  {
+    duration: 100,
+    easing: "ease",
+    fill: "forwards",
+  }
+);

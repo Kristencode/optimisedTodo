@@ -92,7 +92,7 @@ btn.style.fontWeight = "bold";
 btn.style.fontSize = "16px";
 card.appendChild(btn);
 
-// LIST CONTAINER
+// LIST CONTAINER/the conatiner holding all task
 let container = document.createElement("div");
 container.id = "listContainer";
 container.style.height = "auto";
@@ -102,7 +102,7 @@ container.style.marginTop = "2rem";
 container.style.borderTop = "1px solid #444";
 card.appendChild(container);
 
-// logic starts here
+//my logic starts here
 btn.addEventListener("click", function () {
   let inputValue = input.value.trim();
   if (inputValue === "") return;
@@ -161,9 +161,7 @@ btn.addEventListener("click", function () {
   para.appendChild(image);
 
   // function for checking, unchecking and line through
-  checkbox.addEventListener("change", handleCheckboxChange);
-
-  function handleCheckboxChange() {
+  checkbox.addEventListener("change",function handleCheckboxChange() {
     if (checkbox.checked) {
       paratext.style.textDecoration = "line-through";
       paratext.style.opacity = "0.6";
@@ -171,7 +169,7 @@ btn.addEventListener("click", function () {
       paratext.style.textDecoration = "none";
       paratext.style.opacity = "1";
     }
-  }
+  })
 });
 
 // just testing animations

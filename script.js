@@ -28,7 +28,7 @@ let main = document.createElement("main");
 main.style.flex = "1";
 main.style.display = "flex";
 main.style.justifyContent = "center";
-main.style.alignItems = "flex-start";
+main.style.alignItems = "center";
 main.style.padding = "30px";
 main.style.boxSizing = "border-box";
 body.appendChild(main);
@@ -136,9 +136,18 @@ btn.addEventListener("click", function () {
   para.style.width = "100%";
   paraDiv.appendChild(para);
 
+  // timestamp
+
+  let timestamp = document.createElement("span");
+  timestamp.textContent = `${new Date().toLocaleString()}`;
+  timestamp.style.fontSize = "12px";
+  timestamp.style.color = "#999";
+  timestamp.style.marginLeft = "10px";
+
   let paratext = document.createElement("span");
-  paratext.textContent = inputValue;
+  paratext.textContent = `${inputValue},`;
   para.appendChild(paratext);
+  para.appendChild(timestamp);
 
   let image = document.createElement("span");
   image.innerHTML = `
@@ -151,10 +160,18 @@ btn.addEventListener("click", function () {
   });
   para.appendChild(image);
 
-  checkbox.addEventListener("change", function () {
-    paratext.style.textDecoration = checkbox.checked ? "line-through" : "none";
-    paratext.style.opacity = checkbox.checked ? "0.6" : "1";
-  });
+  // function for checking, unchecking and line through
+  checkbox.addEventListener("change", handleCheckboxChange);
+
+  function handleCheckboxChange() {
+    if (checkbox.checked) {
+      paratext.style.textDecoration = "line-through";
+      paratext.style.opacity = "0.6";
+    } else {
+      paratext.style.textDecoration = "none";
+      paratext.style.opacity = "1";
+    }
+  }
 });
 
 // just testing animations

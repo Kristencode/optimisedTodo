@@ -32,7 +32,6 @@ main.style.alignItems = "center";
 main.style.padding = "30px";
 main.style.boxSizing = "border-box";
 main.style.gap = "5px";
-main.style.flexWrap='wrap';
 body.appendChild(main);
 
 // FOOTER card and style
@@ -77,6 +76,7 @@ CompletedCard.style.padding = "5px";
 CompletedCard.style.gap = "10px";
 CompletedCard.style.overflow = "hidden";
 main.appendChild(CompletedCard);
+CompletedCard.style.display='none'
 
 // h2 for completed Task
 let completedTitle = document.createElement("h2");
@@ -161,16 +161,16 @@ btn.addEventListener("click", function () {
 
   // timestamp
 
-  let timestamp = document.createElement("span");
-  timestamp.textContent = `${new Date().toLocaleString()}`;
-  timestamp.style.fontSize = "12px";
-  timestamp.style.color = "#999";
-  timestamp.style.marginLeft = "10px";
+  // let timestamp = document.createElement("span");
+  // timestamp.textContent = `${new Date().toLocaleString()}`;
+  // timestamp.style.fontSize = "12px";
+  // timestamp.style.color = "#999";
+  // timestamp.style.marginLeft = "10px";
 
   let paratext = document.createElement("span");
   paratext.textContent = `${inputValue}`;
   para.appendChild(paratext);
-  para.appendChild(timestamp);
+  // para.appendChild(timestamp);
 
   let image = document.createElement("span");
   image.innerHTML = `
@@ -196,25 +196,6 @@ btn.addEventListener("click", function () {
       container.appendChild(paraDiv);
     }
   });
-
- function updateLayout() {
-   if (window.innerWidth < 600) {
-     main.style.flexDirection = "column";
-     card.style.width = "90%";
-     CompletedCard.style.width = "90%";
-   } else {
-     main.style.flexDirection = "row";
-     card.style.width = "600px";
-     CompletedCard.style.width = "500px";
-   }
- }
-
- // Run on page load
- updateLayout();
-
- // Listen for window resizing
- window.addEventListener("resize", updateLayout);
-
 });
 
 // just testing animations

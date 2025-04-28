@@ -31,6 +31,8 @@ main.style.justifyContent = "center";
 main.style.alignItems = "center";
 main.style.padding = "30px";
 main.style.boxSizing = "border-box";
+main.style.gap = "5px";
+main.style.flexWrap='wrap';
 body.appendChild(main);
 
 // FOOTER card and style
@@ -61,6 +63,27 @@ card.style.alignItems = "center";
 card.style.gap = "10px";
 card.style.overflow = "hidden";
 main.appendChild(card);
+
+// created a cardto push all completed tasks
+let CompletedCard = document.createElement("div");
+CompletedCard.style.maxWidth = "90%";
+CompletedCard.style.width = "500px";
+CompletedCard.style.height = "auto";
+CompletedCard.style.minHeight = "300px";
+CompletedCard.style.boxShadow = "0px 0px 10px rgba(0,0,0,0.5)";
+CompletedCard.style.backgroundColor = "#2c2c2e";
+CompletedCard.style.boxSizing = "border-box";
+CompletedCard.style.padding = "5px";
+CompletedCard.style.gap = "10px";
+CompletedCard.style.overflow = "hidden";
+main.appendChild(CompletedCard);
+
+// h2 for completed Task
+let completedTitle = document.createElement("h2");
+completedTitle.innerText = "Completed Task";
+completedTitle.style.color = "#75FB4C";
+
+CompletedCard.append(completedTitle);
 
 // input/styles
 let input = document.createElement("input");
@@ -145,7 +168,7 @@ btn.addEventListener("click", function () {
   timestamp.style.marginLeft = "10px";
 
   let paratext = document.createElement("span");
-  paratext.textContent = `${inputValue},`;
+  paratext.textContent = `${inputValue}`;
   para.appendChild(paratext);
   para.appendChild(timestamp);
 
@@ -161,15 +184,37 @@ btn.addEventListener("click", function () {
   para.appendChild(image);
 
   // function for checking, unchecking and line through
-  checkbox.addEventListener("change",function handleCheckboxChange() {
+  checkbox.addEventListener("change", function handleCheckboxChange() {
     if (checkbox.checked) {
       paratext.style.textDecoration = "line-through";
       paratext.style.opacity = "0.6";
+      let id = CompletedCard.length + 1;
+      CompletedCard.appendChild(paraDiv);
     } else {
       paratext.style.textDecoration = "none";
       paratext.style.opacity = "1";
+      container.appendChild(paraDiv);
     }
-  })
+  });
+
+ function updateLayout() {
+   if (window.innerWidth < 600) {
+     main.style.flexDirection = "column";
+     card.style.width = "90%";
+     CompletedCard.style.width = "90%";
+   } else {
+     main.style.flexDirection = "row";
+     card.style.width = "600px";
+     CompletedCard.style.width = "500px";
+   }
+ }
+
+ // Run on page load
+ updateLayout();
+
+ // Listen for window resizing
+ window.addEventListener("resize", updateLayout);
+
 });
 
 // just testing animations

@@ -76,7 +76,7 @@ CompletedCard.style.padding = "5px";
 CompletedCard.style.gap = "10px";
 CompletedCard.style.overflow = "hidden";
 main.appendChild(CompletedCard);
-CompletedCard.style.display='none'
+CompletedCard.style.display = "none";
 
 // h2 for completed Task
 let completedTitle = document.createElement("h2");
@@ -161,17 +161,17 @@ btn.addEventListener("click", function () {
 
   // timestamp
 
- let timestamp = document.createElement("span");
+  let timestamp = document.createElement("span");
 
- let now = new Date();
- let hours = now.getHours().toString().padStart(2, "0");
- let minutes = now.getMinutes().toString().padStart(2, "0");
- let dayOfWeek = now.toLocaleString("default", { weekday: "short" });
+  let now = new Date();
+  let hours = now.getHours().toString().padStart(2, "0");
+  let minutes = now.getMinutes().toString().padStart(2, "0");
+  let dayOfWeek = now.toLocaleString("default", { weekday: "short" });
 
- timestamp.textContent = `${dayOfWeek}, ${hours}:${minutes}`;
- timestamp.style.fontSize = "12px";
- timestamp.style.color = "#999";
- timestamp.style.marginLeft = "10px";
+  timestamp.textContent = `${dayOfWeek}, ${hours}:${minutes}`;
+  timestamp.style.fontSize = "12px";
+  timestamp.style.color = "#999";
+  timestamp.style.marginLeft = "10px";
 
   let paratext = document.createElement("span");
   paratext.textContent = `${inputValue}`;
